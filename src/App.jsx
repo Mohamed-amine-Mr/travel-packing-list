@@ -1,15 +1,15 @@
 // App.jsx
-import "./index.css";
-
-// App.jsx
+import { useState } from "react";
 import "./index.css";
 
 function App() {
+  const [items, setItems] = useState([]); // State to manage the list of items
+
   return (
     <div className="app">
       <h1>🌴 Farm Away 💼</h1>
       <Form />
-      <PackingList />
+      <PackingList items={items} /> {/* Pass items as a prop */}
       <Stats />
     </div>
   );
@@ -32,20 +32,27 @@ function Form() {
   );
 }
 
-function PackingList() {
+function PackingList({ items }) {
   return (
     <div className="list">
       <ul>
-        <li>
-          <span>1 Socks</span>
-          <button>❌</button>
-        </li>
-        <li>
-          <span>2 Charger</span>
-          <button>❌</button>
-        </li>
+        {items.map((item) => (
+          <Item item={item} key={item.id} />
+          // Pass item as a prop
+        ))}
       </ul>
     </div>
+  );
+}
+
+function Item({ item }) {
+  return (
+    <li>
+      <span>
+        {item.quantity} {item.description}
+      </span>
+      <button>❌</button>
+    </li>
   );
 }
 
