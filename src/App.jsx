@@ -1,7 +1,10 @@
 import React from "react";
 import "./index.css";
+import { useState } from "react";
 
 function App() {
+  const [items, setItems] = useState([]); // State to manage the list of items
+
   return (
     <div className="app">
       <h1>🌴 Farm Away 💼</h1>
@@ -19,18 +22,20 @@ function App() {
       </form>
       <div className="list">
         <ul>
-          <li>
-            <span>1 Socks</span>
-            <button>❌</button>
-          </li>
-          <li>
-            <span>2 Charger</span>
-            <button>❌</button>
-          </li>
+          {items.map((item) => (
+            <li key={item.id}>
+              <span>
+                {item.quantity} {item.description}
+              </span>
+              <button>❌</button>
+            </li>
+          ))}
         </ul>
       </div>
       <footer className="stats">
-        <em>You have 2 items on your list, and you already packed 0.</em>
+        <em>
+          You have {items.length} items on your list, and you already packed 0.
+        </em>
       </footer>
     </div>
   );
