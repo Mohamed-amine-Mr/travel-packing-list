@@ -1,4 +1,3 @@
-// App.jsx
 import { useState } from "react";
 import "./index.css";
 
@@ -9,11 +8,15 @@ function App() {
     setItems((items) => [...items, item]); // Add the new item to the list
   }
 
+  function handleDeleteItems(id) {
+    setItems((items) => items.filter((item) => item.id !== id)); // Remove the item with the matching ID
+  }
   return (
     <div className="app">
       <h1>🌴 Farm Away 💼</h1>
-      <Form onAddItems={handleAddItems} /> {/* Pass handleAddItems as a prop */}
-      <PackingList items={items} />
+      <Form onAddItems={handleAddItems} />
+      <PackingList items={items} onDeleteItems={handleDeleteItems} />{" "}
+      {/* Pass handleDeleteItems as a prop */}
       <Stats />
     </div>
   );
@@ -64,25 +67,27 @@ function Form({ onAddItems }) {
   );
 }
 
-function PackingList({ items }) {
+function PackingList({ items, onDeleteItems }) {
   return (
     <div className="list">
       <ul>
         {items.map((item) => (
-          <Item item={item} key={item.id} />
+          <Item item={item} onDeleteItems={onDeleteItems} key={item.id} />
+          // {/* Pass onDeleteItems as a prop */}
         ))}
       </ul>
     </div>
   );
 }
 
-function Item({ item }) {
+function Item({ item, onDeleteItems }) {
   return (
     <li>
       <span>
         {item.quantity} {item.description}
       </span>
-      <button>❌</button>
+      <button onClick={() => onDeleteItems(item.id)}>❌</button>{" "}
+      {/* Add delete button */}
     </li>
   );
 }
