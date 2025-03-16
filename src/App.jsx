@@ -11,12 +11,22 @@ function App() {
   function handleDeleteItems(id) {
     setItems((items) => items.filter((item) => item.id !== id)); // Remove the item with the matching ID
   }
+  function handleToggleItem(id) {
+    setItems((items) =>
+      items.map(
+        (item) => (item.id === id ? { ...item, packed: !item.packed } : item) // Toggle packed status
+      )
+    );
+  }
   return (
     <div className="app">
       <h1>🌴 Farm Away 💼</h1>
       <Form onAddItems={handleAddItems} />
-      <PackingList items={items} onDeleteItems={handleDeleteItems} />{" "}
-      {/* Pass handleDeleteItems as a prop */}
+      <PackingList
+        items={items}
+        onDeleteItems={handleDeleteItems}
+        handleToggleItem={handleToggleItem}
+      />
       <Stats />
     </div>
   );
@@ -67,27 +77,35 @@ function Form({ onAddItems }) {
   );
 }
 
-function PackingList({ items, onDeleteItems }) {
+function PackingList({ items, onDeleteItems, handleToggleItem }) {
   return (
     <div className="list">
       <ul>
         {items.map((item) => (
-          <Item item={item} onDeleteItems={onDeleteItems} key={item.id} />
-          // {/* Pass onDeleteItems as a prop */}
+          <Item
+            item={item}
+            onDeleteItems={onDeleteItems}
+            key={item.id}
+            handleToggleItem={handleToggleItem} // Pass handleToggleItem as a prop
+          />
         ))}
       </ul>
     </div>
   );
 }
 
-function Item({ item, onDeleteItems }) {
+function Item({ item, onDeleteItems, handleToggleItem }) {
   return (
     <li>
-      <span>
+      <input
+        type="checkbox"
+        checked={item.packed}
+        onChange={() => handleToggleItem(item.id)} // Toggle packed status
+      />
+      <span style={item.packed ? { textDecoration: "line-through" } : {}}>
         {item.quantity} {item.description}
       </span>
-      <button onClick={() => onDeleteItems(item.id)}>❌</button>{" "}
-      {/* Add delete button */}
+      <button onClick={() => onDeleteItems(item.id)}>❌</button>
     </li>
   );
 }
