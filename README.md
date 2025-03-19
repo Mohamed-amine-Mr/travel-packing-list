@@ -1,12 +1,44 @@
-# React + Vite
+🌴 Farm Away 💼
+A simple packing list app built with React and Vite that helps you organize and track your items for your next trip. Add, delete, and toggle the packed status of items to keep track of everything you need.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Features
+Add items: Add a description and quantity for each item you need for your trip.
+Delete items: Remove items from your list.
+Toggle packed status: Mark items as packed with a simple checkbox.
+Dynamic stats: The app shows how many items you have in your list (you can extend it to show the number of packed items too).
+Installation
+Clone the repository:
 
-Currently, two official plugins are available:
+bash
+Copy
+Edit
+git clone https://github.com/yourusername/farm-away-app.git
+Navigate to the project directory:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+bash
+Copy
+Edit
+cd farm-away-app
+Install dependencies:
 
-## Expanding the ESLint configuration
+bash
+Copy
+Edit
+npm install
+Run the app:
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+bash
+Copy
+Edit
+npm run dev
+Open the app in your browser at http://localhost:3000.
+
+Usage
+Add Items: Use the form to enter the item description and select the quantity. Press "Add" to add the item to the list.
+Delete Items: Click the "❌" button next to any item to remove it from your list.
+Toggle Packed Status: Click the checkbox next to an item to mark it as packed. It will be crossed out when packed.
+Technologies Used
+React.js
+Vite (for faster development build and HMR)
+React Hooks (useState)
+CSS for styling
