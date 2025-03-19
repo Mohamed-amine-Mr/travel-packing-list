@@ -30,7 +30,6 @@ function App() {
     </div>
   );
 }
-
 function Form({ onAddItems }) {
   const [description, setDescription] = useState(""); // State for the item description
   const [quantity, setQuantity] = useState(1); // State for the item quantity
@@ -111,10 +110,14 @@ function Item({ item, onDeleteItems, handleToggleItem }) {
 
 function Stats({ items }) {
   const numItems = items.length;
+  const numPacked = items.filter((item) => item.packed).length;
 
   return (
     <footer className="stats">
-      <em>You have {numItems} items on your list, and you already packed 0.</em>
+      <em>
+        You have {numItems} items on your list, and you already packed{" "}
+        {numPacked}.
+      </em>
     </footer>
   );
 }
