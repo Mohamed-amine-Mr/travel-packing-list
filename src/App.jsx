@@ -3,7 +3,6 @@ import "./index.css";
 
 function App() {
   const [items, setItems] = useState([]); // State to manage the list of items
-
   function handleAddItems(item) {
     setItems((items) => [...items, item]); // Add the new item to the list
   }
@@ -27,7 +26,7 @@ function App() {
         onDeleteItems={handleDeleteItems}
         handleToggleItem={handleToggleItem}
       />
-      <Stats />
+      <Stats items={items} />
     </div>
   );
 }
@@ -110,10 +109,12 @@ function Item({ item, onDeleteItems, handleToggleItem }) {
   );
 }
 
-function Stats() {
+function Stats({ items }) {
+  const numItems = items.length;
+
   return (
     <footer className="stats">
-      <em>You have 2 items on your list, and you already packed 0.</em>
+      <em>You have {numItems} items on your list, and you already packed 0.</em>
     </footer>
   );
 }
