@@ -24,7 +24,7 @@ function App() {
       <PackingList
         items={items}
         onDeleteItems={handleDeleteItems}
-        handleToggleItem={handleToggleItem}
+        onToggleItem={handleToggleItem}
       />
       <Stats items={items} />
     </div>
@@ -75,7 +75,7 @@ function Form({ onAddItems }) {
   );
 }
 
-function PackingList({ items, onDeleteItems, handleToggleItem }) {
+function PackingList({ items, onDeleteItems, onToggleItem }) {
   return (
     <div className="list">
       <ul>
@@ -84,10 +84,18 @@ function PackingList({ items, onDeleteItems, handleToggleItem }) {
             item={item}
             onDeleteItems={onDeleteItems}
             key={item.id}
-            handleToggleItem={handleToggleItem} // Pass handleToggleItem as a prop
+            handleToggleItem={onToggleItem} // Pass onToggleItem as a prop
           />
         ))}
       </ul>
+
+      <div className="actions">
+        <select name="input" id="">
+          Sort by input order
+          <option value="description">Sort by description</option>
+          <option value="description">Sort by packed status</option>
+        </select>
+      </div>
     </div>
   );
 }

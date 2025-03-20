@@ -1,4 +1,5 @@
 🌴 Farm Away 💼
+
 A simple packing list app built with React and Vite that helps you organize and track your items for your next trip. Add, delete, and toggle the packed status of items to keep track of everything you need.
 
 Features
