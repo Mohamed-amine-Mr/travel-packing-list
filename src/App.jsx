@@ -1,13 +1,15 @@
 import "./index.css";
 import React from "react";
 import { useState } from "react";
-import { Stats } from "./components/Stats";
+import Logo from "./components/Logo.jsx";
+import Form from "./components/Form.jsx";
+import PackingList from "./components/PackingList.jsx";
+import Stats from "./components/Stats.jsx";
 
 const TravelList = () => {
   const [description, setDescription] = useState("");
   const [quantity, setQuantity] = useState(1);
   const [items, setItems] = useState([]);
-
   function handleClear() {
     const confirmed = window.confirm("Are u sure u want to delete all items?");
     if (confirmed) setItems([]);
